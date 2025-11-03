@@ -1,0 +1,61 @@
+body {
+  background: url('fortunechicken.png') no-repeat center center fixed;
+  background-size: contain;
+  background-color: #f9f6f2;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  color: #000;
+  overflow-x: hidden;
+}
+
+.ui-overlay {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  top: clamp(62vh, 64vh, 66vh);
+  z-index: 2;
+  width: min(90vw, 720px);
+  text-align: center;
+}
+
+.fortune-text-area {
+  background: none;
+  padding: 10px 10px;
+  border-radius: 10px;
+  max-width: 480px;
+  margin: 0 auto 5px;
+  transform: translateX(-5px);
+  min-height: 150px;
+}
+
+#fortuneText {
+  color: #000000;                 
+  text-shadow: 0 2px 6px rgba(0,0,0,.35);
+  font-weight: 600;
+  line-height: 1.3;
+  transition: color .3s, font-family .3s, background-color .3s, border .3s;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  transform: translateY(25px);
+}
+
+.control-btn {
+  width: 90px; 
+  height: 30px;     
+  font-size: 0.8rem;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: transform .2s;
+  background-color: #fff;
+}
+
+.control-btn:hover { 
+  transform: scale(1.05); 
+}
+
+

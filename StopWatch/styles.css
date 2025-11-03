@@ -1,0 +1,20 @@
+body {
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.display-box {
+  background-color: #fff;
+  border: 2px solid #007bff;
+  border-radius: 12px;
+  padding: 20px 40px;
+  font-size: 3rem;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  color: #212529;
+}
+
+.btn-group button {
+  margin: 5px;
+  width: 100px;
+}
