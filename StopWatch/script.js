@@ -18,7 +18,6 @@ function startTimer() {
       if (time >= 30) {
         clearInterval(interval);
         interval = null;
-        updateDisplay();
       }
     }, 1000);
   }
@@ -30,20 +29,14 @@ function stopTimer() {
 }
 
 function resetTimer() {
+  const wasRunning = (interval !== null); 
+
   stopTimer();
   time = 0;
   updateDisplay();
-  
-  if (!interval) {
-    interval = setInterval(() => {
-      time += 3;
-      updateDisplay();
-      if (time >= 30) {
-        clearInterval(interval);
-        interval = null;
-        updateDisplay();
-      }
-    }, 1000);
+
+  if (wasRunning) {
+    startTimer();
   }
 }
 
