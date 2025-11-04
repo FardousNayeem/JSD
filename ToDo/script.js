@@ -1,6 +1,7 @@
 const taskInput = document.getElementById("taskInput");
 const addTaskBtn = document.getElementById("addTaskBtn");
 const taskList = document.getElementById("taskList");
+const tasksDone = document.getElementById("listDone");
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 renderTasks();
@@ -59,4 +60,44 @@ function deleteTask(index) {
 
 function saveTasks() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+
+var modal = document.getElementById("doneModal");
+var btn = document.getElementById("doneBtn");
+var span = document.getElementsByClassName("close")[0];
+
+btn.onclick = function() {
+  renderDoneTasks();
+  modal.style.display = "block";
+}
+
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+function renderDoneTasks() {
+  tasksDone.innerHTML = "";
+  const completedTasks = tasks.filter(task => task.completed);
+
+  if (completedTasks.length === 0) {
+    const li = document.createElement("li");
+    li.classList.add("list-group-item", "text-center");
+    li.textContent = "No completed tasks yet!";
+    tasksDone.appendChild(li);
+    return;
+  }
+
+  completedTasks.forEach(task => {
+    const li = document.createElement("li");
+    li.classList.add("list-group-item");
+    li.textContent = task.text;
+    tasksDone.appendChild(li);
+  });
 }
