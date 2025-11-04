@@ -33,6 +33,18 @@ function resetTimer() {
   stopTimer();
   time = 0;
   updateDisplay();
+  
+  if (!interval) {
+    interval = setInterval(() => {
+      time += 3;
+      updateDisplay();
+      if (time >= 30) {
+        clearInterval(interval);
+        interval = null;
+        updateDisplay();
+      }
+    }, 1000);
+  }
 }
 
 startBtn.addEventListener("click", startTimer);
