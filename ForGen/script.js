@@ -25,6 +25,7 @@ const fortunes = [
 ];
 
 const fortuneText = document.getElementById("fortuneText");
+const prevBtn = document.getElementById("previousFortune");
 let currentIndex = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -32,56 +33,47 @@ document.addEventListener("DOMContentLoaded", () => {
   fortuneText.textContent = fortunes[currentIndex];
 });
 
-const textBtn = document.getElementById("changeTextColor");
-const bgBtn = document.getElementById("changeBackgroundColor");
-const borderBtn = document.getElementById("changeBorderColor");
-const fontBtn = document.getElementById("changeFontStyle");
-const prevBtn = document.getElementById("previousFortune");
-
-const textColors = ["#dc3545", "#0d6efd", "#198754", "#6f42c1"];
-const bgColors = ["#fff3cd", "#d1e7dd", "#cfe2ff", "#f8d7da"];
-const borderColors = ["#198754", "#0d6efd", "#fd7e14", "#6f42c1"];
-const fontFamilies = [
-  "'Georgia', serif",
-  "'Courier New', monospace",
-  "'Arial', sans-serif",
-  "'Trebuchet MS', sans-serif"
+const themes = [
+  {
+    textColor: "#dc3545",
+    bgColor: "#fff3cd",
+    borderColor: "#198754",
+    font: "'Georgia', serif"
+  },
+  {
+    textColor: "#0d6efd",
+    bgColor: "#cfe2ff",
+    borderColor: "#6f42c1",
+    font: "'Courier New', monospace"
+  },
+  {
+    textColor: "#198754",
+    bgColor: "#d1e7dd",
+    borderColor: "#fd7e14",
+    font: "'Arial', sans-serif"
+  },
+  {
+    textColor: "#6f42c1",
+    bgColor: "#f8d7da",
+    borderColor: "#0d6efd",
+    font: "'Trebuchet MS', sans-serif"
+  }
 ];
-const fontNames = ["Georgia", "Courier", "Arial", "Trebuchet"];
 
-function randomItem(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
+function applyTheme(theme, button) {
+  fortuneText.style.color = theme.textColor;
+  fortuneText.style.backgroundColor = theme.bgColor;
+  fortuneText.style.border = `3px solid ${theme.borderColor}`;
+  fortuneText.style.fontFamily = theme.font;
+  fortuneText.style.padding = "10px";
+  button.style.backgroundColor = theme.textColor;
+  button.style.color = "#fff";
 }
 
-textBtn.addEventListener("click", () => {
-  const color = randomItem(textColors);
-  fortuneText.style.color = color;
-  textBtn.style.backgroundColor = color;
-  textBtn.style.color = "#fff";
-});
-
-bgBtn.addEventListener("click", () => {
-  const color = randomItem(bgColors);
-  fortuneText.style.backgroundColor = color;
-  bgBtn.style.backgroundColor = color;
-  bgBtn.style.color = "#000";
-});
-
-borderBtn.addEventListener("click", () => {
-  const color = randomItem(borderColors);
-  fortuneText.style.border = `3px solid ${color}`;
-  fortuneText.style.padding = "10px";
-  borderBtn.style.backgroundColor = color;
-  borderBtn.style.color = "#fff";
-});
-
-fontBtn.addEventListener("click", () => {
-  const font = randomItem(fontFamilies);
-  const name = fontNames[fontFamilies.indexOf(font)];
-  fortuneText.style.fontFamily = font;
-  fontBtn.textContent = name;
-  fontBtn.style.backgroundColor = "#e9ecef";
-});
+for (let i = 1; i <= 4; i++) {
+  const btn = document.getElementById(`theme${i}`);
+  btn.addEventListener("click", () => applyTheme(themes[i - 1], btn));
+}
 
 prevBtn.addEventListener("click", () => {
   currentIndex = (currentIndex - 1 + fortunes.length) % fortunes.length;
