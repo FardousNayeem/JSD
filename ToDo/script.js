@@ -67,10 +67,11 @@ var modal = document.getElementById("doneModal");
 var btn = document.getElementById("doneBtn");
 var span = document.getElementsByClassName("close")[0];
 
+
 btn.onclick = function() {
   renderDoneTasks();
-  modal.style.display = "block";
-}
+  modal.style.display = "flex";
+};
 
 span.onclick = function() {
   modal.style.display = "none";
@@ -85,14 +86,6 @@ window.onclick = function(event) {
 function renderDoneTasks() {
   tasksDone.innerHTML = "";
   const completedTasks = tasks.filter(task => task.completed);
-
-  if (completedTasks.length === 0) {
-    const li = document.createElement("li");
-    li.classList.add("list-group-item", "text-center");
-    li.textContent = "No completed tasks yet!";
-    tasksDone.appendChild(li);
-    return;
-  }
 
   completedTasks.forEach(task => {
     const li = document.createElement("li");
