@@ -18,18 +18,25 @@ const fortunes = [
   "The universe is watching. Perform accordingly.",
   "The mirror sees your potential. It is slightly concerned.",
   "You will soon receive clarity or at least a louder hint.",
-  "Someones downfall will feel suspiciously like justice.",
+  "Someone's downfall will feel suspiciously like justice.",
   "Even luck takes a day off. Today might be it.",
   "You are the plot twist someone deserves.",
   "The winds of change are coming. Bring a jacket."
 ];
 
-
 const fortuneText = document.getElementById("fortuneText");
+let currentIndex = 0;
+
 document.addEventListener("DOMContentLoaded", () => {
-  const randomIndex = Math.floor(Math.random() * fortunes.length);
-  fortuneText.textContent = fortunes[randomIndex];
+  currentIndex = Math.floor(Math.random() * fortunes.length);
+  fortuneText.textContent = fortunes[currentIndex];
 });
+
+const textBtn = document.getElementById("changeTextColor");
+const bgBtn = document.getElementById("changeBackgroundColor");
+const borderBtn = document.getElementById("changeBorderColor");
+const fontBtn = document.getElementById("changeFontStyle");
+const prevBtn = document.getElementById("previousFortune");
 
 const textColors = ["#dc3545", "#0d6efd", "#198754", "#6f42c1"];
 const bgColors = ["#fff3cd", "#d1e7dd", "#cfe2ff", "#f8d7da"];
@@ -41,11 +48,6 @@ const fontFamilies = [
   "'Trebuchet MS', sans-serif"
 ];
 const fontNames = ["Georgia", "Courier", "Arial", "Trebuchet"];
-
-const textBtn = document.getElementById("changeTextColor");
-const bgBtn = document.getElementById("changeBackgroundColor");
-const borderBtn = document.getElementById("changeBorderColor");
-const fontBtn = document.getElementById("changeFontStyle");
 
 function randomItem(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -79,4 +81,9 @@ fontBtn.addEventListener("click", () => {
   fortuneText.style.fontFamily = font;
   fontBtn.textContent = name;
   fontBtn.style.backgroundColor = "#e9ecef";
+});
+
+prevBtn.addEventListener("click", () => {
+  currentIndex = (currentIndex - 1 + fortunes.length) % fortunes.length;
+  fortuneText.textContent = fortunes[currentIndex];
 });
