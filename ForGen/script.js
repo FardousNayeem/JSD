@@ -84,6 +84,6 @@ fontBtn.addEventListener("click", () => {
 });
 
 prevBtn.addEventListener("click", () => {
-  currentIndex = (currentIndex - fortunes.length + 1) % fortunes.length;
+  currentIndex = (currentIndex - 1 + fortunes.length) % fortunes.length;
   fortuneText.textContent = fortunes[currentIndex];
 });
